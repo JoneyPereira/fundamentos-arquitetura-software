@@ -67,3 +67,43 @@
 > "Tarefa difíceis que um arquiteto enfrenta é como equilibrar a codificação prática com a arquitetura de software."
 
 [Resumo do capítulo](doc/capitulo2/resumo.md)
+
+### Capitulo 3 - Modularidade
+
+> "A modularidade é um princípio organizador."
+
+> "... codebase sustentáveis exigem a ordem e a consistência que isso proporcina."
+
+> "A modularidade trata da divisão de sistemas em partes menores, como na transição de um estilo de arquitetura monolítica (como a tradicional arquitetura em camadas N-tier) para um estilo de arquitetura altamente distribuída, como nos microsserviços."
+
+> "A granularidade, está relacionada com o tamanho dessas partes - que tamanho uma parte específica do sistema (ou serviço) deve ter."
+
+> "Modularidade: um agrupamento lógico de código relacionado, que pode ser um grupo de classes em uma linguagem orientada a objetos ou um grupo de funções em uma linguagem estruturada ou funcional."
+
+> "A coesão mede a extensão até a qual as partes de um módulo devem estar contidas dentro do mesmo módulo."
+
+> "Métrica LCOM: a soma dos conjuntos de métodos não compartilhados por meio de campos compartilhados."
+
+> "Segunda Lei da Arquitetura de Software: por que é mais importante de que como."
+
+> "O acoplamento aferente mede o número de conexões de entrada de um artefato de código (compomente, classe, função e assim por diante). O acoplamento eferente mede as conexões de saída de outros artefatos de código."
+
+> "Abstração é a proporção existente entre artefatos abstratos (classes abstratas, interfaces e assim por diante) e artefatos concretos (implementações)."
+
+> "Os arquitetos calculam a abstração determinando a razão entre a soma dos artefatos abstratos e a soma dos artefatos concretos e abstratos."
+
+> "métricas holísticas, estrutura arquitetural é a distância da sequência principal."
+
+> "A conascência não é uma métrica de acoplamento como os acoplamentos aferente e eferente - em vez disso, representa uma linguagem que ajuda os arquitetos a descreverem os diferentes tipos de acoplamento com mais precisão."
+
+> "A conascência estática é o acoplamento no nível do código-fonte."
+
+> "A conascência dinâmica, que analisa as chamadas no tempo de execução. "
+
+> "A conascência é uma estrutura de análise."
+
+> "Regra de grau: converta formas fortes em formas mais fracas de conascência"
+
+> "Regra de localidade: à medida que a distância entre os elementos de software aumentar, use formas mais fracas de conascência."
+
+[Resumo do capítulo](doc/capitulo3/resumo.md)
