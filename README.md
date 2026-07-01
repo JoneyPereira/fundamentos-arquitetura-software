@@ -1,5 +1,11 @@
 # Fundamentos da Arquitetura de Software - Uma Abordagem Moderna de Engenharia
 
+## Skills
+
+Este repositório também reúne skills práticas para agentes de IA, derivadas dos
+conceitos estudados em cada capítulo. Cada skill fica em `skills/<nome>/SKILL.md`
+e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
+
 ## Capítulo 1: Introdução
 
 > "Todas as arquiteturas são produtos de seu contexto - lembre-se disso ao ler este livro"
@@ -107,3 +113,7 @@
 > "Regra de localidade: à medida que a distância entre os elementos de software aumentar, use formas mais fracas de conascência."
 
 [Resumo do capítulo](doc/capitulo3/resumo.md)
+
+**Skill relacionada:** [`lcom96-repository-analysis`](doc/skills/lcom96-repository-analysis/SKILL.md)
+> Analisa a coesão de classes de um repositório real calculando LCOM96 por classe,
+> gerando ranking de baixa coesão e apontando indícios de violação de SRP.
