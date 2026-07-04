@@ -117,3 +117,33 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 **Skill relacionada:** [`lcom96-repository-analysis`](doc/skills/lcom96-repository-analysis/SKILL.md)
 > Analisa a coesão de classes de um repositório real calculando LCOM96 por classe,
 > gerando ranking de baixa coesão e apontando indícios de violação de SRP.
+
+### Capitulo 4 - Definição das características arquiteturais
+
+> "Design estrutual: análise de características arquiteturais, design de componentes lógicos."
+
+> "definir, descobrir e analisar todas as coisas que o software deve fazer que não estão diretamente relacionadas à funcionalidade do domínio: características arquiteturais"
+
+> "característica arquitetural: especificar uma consideração de design que não seja do domínio, influenciar algum aspecto do design e ser crítico ou importante para o sucesso da aplicação."
+
+> "critérios operacionais e de design para o sucesso do projeto"
+
+> "identificar considerações importante de design"
+
+> "se esforçar para escolher o menor número possível de características arquiteturais em vez de o maior."
+
+> "características arquiteturais implícitas: disponibilidade, confiabilidade e segurança."
+
+> "características arquiteturais explícitas: aparecem em documentos de requisitos."
+
+> "um projeto de software pode inventar características arquiteturais com base em fatores únicos."
+
+> "Cada característica suportada exigirá esforço de design do arquiteto, esforço dos desenvolvedores para implementá-la e mantê-la e, talvez, suporte estrutural."
+
+> "Nunca tente obter a melhor arquitetura, vise obter a arquitetura menos pior."
+
+> "Esforce-se para projetar uma arquitetura que seja o mais interativa posível."
+
+> "mais importante do desenvolvimento de software ágil é o valor da iteração."
+
+[Resumo do capítulo](doc/capitulo4/resumo.md)
