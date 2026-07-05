@@ -147,3 +147,33 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 > "mais importante do desenvolvimento de software ágil é o valor da iteração."
 
 [Resumo do capítulo](doc/capitulo4/resumo.md)
+
+### Capitulo 5 - Identificando características arquiteturais
+
+> "identificar as características arquiteturais ('capacidades') corretas para determinado problema ou aplicação exige não só o conhecimento do problema do domínio, mas também a colaboração das partes interessadas para determinar o que é realmente importante do ponto de vista do domínio."
+
+> "podemos descobrir características arquiteturais: as preocupações do domínio, os requisitos do projeto e nosso conhecimento implicíto do domínio."
+
+> "arquitetos e os stakeholders do domínio falam idiomas diferentes."
+
+> "'tradizir' as preocupações do domínio para a linguagem das características arquiteturais."
+
+> "Conhecer os principais objetivos do domínio permite que o arquiteto traduza essas preocupações para as 'capacidades', o que forma a base para decisões arquiteturais e justificáveis."
+
+> "uma armadilha comum é a criação de equivalências falsas, como equiparar agilidade somente com tempo de lançamento no mercado."
+
+> "objetivos de negócio começam como características arquiteturais compostas."
+
+> "Decompô-las e dar às caracteríticas resultantes definições objetivas faz parte do trabalho dos arquitetos."
+
+> "Não existem respostas erradas na arquitetura, apenas respostas caras. - Uma das famosas frases de Mark."
+
+> "identificar corretamente elementos estruturais importantes talvez facilite criar um desifn mais simples ou elegante."
+
+> "esforce-se para manter a lista final o mais curta possível."
+
+> "colaboração entre o arquiteto e os stakeholders d negócio é crucial durante a análise das características arquiteturais."
+
+[Resumo do capítulo](doc/capitulo5/resumo.md)
+
+[Facilitador de características arquiteturais (ferramenta interativa)](doc/capitulo5/facilitador-caracteristicas.html)

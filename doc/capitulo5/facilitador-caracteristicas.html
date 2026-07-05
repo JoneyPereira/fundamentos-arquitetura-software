@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facilitador · Características Arquiteturais</title>
+<style>
+  body{margin:0;}
+  :root{
+    --blueprint-bg:#0f2a43;
+    --blueprint-panel:#123350;
+    --blueprint-panel-2:#163d61;
+    --blueprint-line:#3a6d8f;
+    --blueprint-grid:rgba(94,200,216,0.07);
+    --ink:#e8f0f2;
+    --ink-dim:#9fc1d1;
+    --cyan:#5ec8d8;
+    --amber:#e8a33d;
+    --danger:#d8615e;
+    --mono:'Space Mono', 'IBM Plex Mono', monospace;
+    --sans:'Inter', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  .app{
+    background:var(--blueprint-bg);
+    background-image:
+      linear-gradient(var(--blueprint-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--blueprint-grid) 1px, transparent 1px);
+    background-size:24px 24px;
+    color:var(--ink);
+    font-family:var(--sans);
+    padding:28px;
+    border-radius:4px;
+    min-height:600px;
+  }
+  .titleblock{
+    border:1px solid var(--blueprint-line);
+    padding:16px 20px;
+    margin-bottom:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .titleblock h1{
+    font-family:var(--mono);
+    font-size:19px;
+    letter-spacing:0.5px;
+    margin:0 0 4px 0;
+    color:var(--cyan);
+    text-transform:uppercase;
+  }
+  .titleblock p{margin:0;color:var(--ink-dim);font-size:13px;}
+  .tag{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--blueprint-bg);
+    background:var(--cyan);
+    padding:3px 8px;
+    border-radius:2px;
+    white-space:nowrap;
+    align-self:flex-start;
+  }
+  .steps{display:flex;gap:6px;margin-bottom:20px;font-family:var(--mono);font-size:11px;flex-wrap:wrap;}
+  .step{
+    padding:6px 12px;border:1px solid var(--blueprint-line);color:var(--ink-dim);
+    border-radius:2px;
+  }
+  .step.active{border-color:var(--cyan);color:var(--cyan);}
+  .step.done{border-color:var(--amber);color:var(--amber);}
+  .panel{
+    border:1px solid var(--blueprint-line);
+    background:var(--blueprint-panel);
+    padding:20px;
+    margin-bottom:16px;
+    border-radius:2px;
+  }
+  .panel h2{
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--ink);
+    margin:0 0 14px 0;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    border-bottom:1px dashed var(--blueprint-line);
+    padding-bottom:8px;
+  }
+  .hint{color:var(--ink-dim);font-size:12.5px;line-height:1.5;margin:0 0 14px 0;}
+  .char-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;}
+  .char-item{
+    border:1px solid var(--blueprint-line);
+    padding:10px 12px;
+    border-radius:2px;
+    cursor:pointer;
+    transition:border-color .15s, background .15s;
+    background:var(--blueprint-panel-2);
+  }
+  .char-item:hover{border-color:var(--cyan);}
+  .char-item.selected{border-color:var(--amber);background:rgba(232,163,61,0.08);}
+  .char-item .name{font-family:var(--mono);font-size:12.5px;color:var(--ink);display:flex;align-items:center;gap:8px;}
+  .char-item .def{font-size:11.5px;color:var(--ink-dim);margin-top:4px;line-height:1.4;}
+  .checkbox{width:12px;height:12px;border:1px solid var(--ink-dim);border-radius:2px;flex:0 0 auto;}
+  .char-item.selected .checkbox{background:var(--amber);border-color:var(--amber);}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px;}
+  input[type=text], input[type=number]{
+    background:var(--blueprint-bg);
+    border:1px solid var(--blueprint-line);
+    color:var(--ink);
+    padding:8px 10px;
+    font-family:var(--sans);
+    font-size:13px;
+    border-radius:2px;
+  }
+  input[type=text]:focus, input[type=number]:focus{outline:none;border-color:var(--cyan);}
+  label{font-size:12.5px;color:var(--ink-dim);}
+  button{
+    font-family:var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    background:var(--cyan);
+    color:var(--blueprint-bg);
+    border:none;
+    padding:9px 16px;
+    border-radius:2px;
+    cursor:pointer;
+    transition:opacity .15s;
+  }
+  button:hover{opacity:0.85;}
+  button:disabled{opacity:0.3;cursor:not-allowed;}
+  button.secondary{background:transparent;color:var(--ink-dim);border:1px solid var(--blueprint-line);}
+  button.secondary:hover{color:var(--ink);border-color:var(--cyan);}
+  button.danger{background:transparent;color:var(--danger);border:1px solid var(--danger);}
+  .add-custom{display:flex;gap:8px;margin-top:12px;}
+  .vote-list{display:flex;flex-direction:column;gap:8px;}
+  .vote-row{
+    display:grid;
+    grid-template-columns:1fr auto auto auto;
+    align-items:center;
+    gap:10px;
+    padding:8px 10px;
+    border:1px solid var(--blueprint-line);
+    border-radius:2px;
+    background:var(--blueprint-panel-2);
+  }
+  .vote-row .name{font-family:var(--mono);font-size:12.5px;}
+  .vote-controls{display:flex;align-items:center;gap:8px;}
+  .vote-btn{
+    width:24px;height:24px;border-radius:50%;border:1px solid var(--cyan);
+    background:transparent;color:var(--cyan);display:flex;align-items:center;justify-content:center;
+    font-size:14px;line-height:1;padding:0;
+  }
+  .vote-count{font-family:var(--mono);width:24px;text-align:center;color:var(--amber);font-size:14px;}
+  .budget{font-family:var(--mono);font-size:13px;color:var(--ink-dim);}
+  .budget.zero{color:var(--amber);}
+  .budget.over{color:var(--danger);}
+  .stakeholder-card{
+    border:1px solid var(--blueprint-line);
+    padding:12px 14px;
+    margin-bottom:8px;
+    border-radius:2px;
+    background:var(--blueprint-panel-2);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .stakeholder-card .who{font-family:var(--mono);font-size:12.5px;}
+  .stakeholder-card .who .role{color:var(--ink-dim);font-size:11px;}
+  .bar-row{display:grid;grid-template-columns:180px 1fr 50px;gap:10px;align-items:center;margin-bottom:10px;}
+  .bar-label{font-family:var(--mono);font-size:12px;text-align:right;color:var(--ink);}
+  .bar-track{height:18px;background:var(--blueprint-bg);border:1px solid var(--blueprint-line);border-radius:2px;overflow:hidden;}
+  .bar-fill{height:100%;background:linear-gradient(90deg, var(--cyan), var(--amber));}
+  .bar-value{font-family:var(--mono);font-size:12px;color:var(--amber);}
+  .top-badge{
+    display:inline-block;font-family:var(--mono);font-size:10px;background:var(--amber);color:var(--blueprint-bg);
+    padding:2px 6px;border-radius:2px;margin-left:6px;
+  }
+  .footer-row{display:flex;justify-content:space-between;margin-top:18px;flex-wrap:wrap;gap:10px;}
+  .empty{color:var(--ink-dim);font-size:12.5px;font-style:italic;}
+  .divider{border-top:1px dashed var(--blueprint-line);margin:16px 0;}
+</style>
+</head>
+<body>
+
+<div class="app" id="app"></div>
+
+<script>
+(function(){
+
+const DEFAULT_CHARACTERISTICS = [
+  {id:'availability', name:'Disponibilidade', def:'O sistema deve estar acessível e operante quando necessário.', cat:'Operacional'},
+  {id:'performance', name:'Desempenho', def:'Tempo de resposta e throughput adequados sob carga esperada.', cat:'Operacional'},
+  {id:'scalability', name:'Escalabilidade', def:'Capacidade de suportar aumento de carga/usuários sem degradação.', cat:'Operacional'},
+  {id:'elasticity', name:'Elasticidade', def:'Capacidade de escalar rapidamente para picos súbitos de carga.', cat:'Operacional'},
+  {id:'fault-tolerance', name:'Tolerância a falhas', def:'O sistema continua funcionando mesmo com falhas parciais.', cat:'Operacional'},
+  {id:'reliability', name:'Confiabilidade', def:'O sistema funciona corretamente e de forma consistente ao longo do tempo.', cat:'Operacional'},
+  {id:'recoverability', name:'Recuperabilidade', def:'Capacidade de restaurar o sistema após falha ou desastre.', cat:'Operacional'},
+  {id:'data-loss', name:'Proteção contra perda de dados', def:'Garantia de que dados críticos não sejam perdidos.', cat:'Operacional'},
+  {id:'security', name:'Segurança', def:'Proteção contra acessos e usos não autorizados.', cat:'Cross-cutting'},
+  {id:'privacy', name:'Privacidade', def:'Proteção de dados pessoais e sensíveis dos usuários.', cat:'Cross-cutting'},
+  {id:'compliance', name:'Conformidade legal', def:'Aderência a leis, regulamentações e normas do setor.', cat:'Cross-cutting'},
+  {id:'usability', name:'Usabilidade', def:'Facilidade de uso do sistema pelo usuário final.', cat:'Cross-cutting'},
+  {id:'accessibility', name:'Acessibilidade', def:'Uso do sistema por pessoas com diferentes capacidades.', cat:'Cross-cutting'},
+  {id:'testability', name:'Testabilidade', def:'Facilidade de testar o sistema de forma automatizada.', cat:'Cross-cutting'},
+  {id:'deployability', name:'Implantabilidade', def:'Facilidade e frequência com que o sistema pode ser implantado.', cat:'Estrutural'},
+  {id:'agility', name:'Agilidade', def:'Velocidade de resposta a mudanças de requisitos do negócio.', cat:'Cross-cutting'},
+  {id:'maintainability', name:'Manutenibilidade', def:'Facilidade de corrigir defeitos e evoluir o sistema.', cat:'Estrutural'},
+  {id:'extensibility', name:'Extensibilidade', def:'Facilidade de adicionar novas funcionalidades sem grandes retrabalhos.', cat:'Estrutural'},
+  {id:'configurability', name:'Configurabilidade', def:'Capacidade de alterar comportamento via configuração, sem novo código.', cat:'Estrutural'},
+  {id:'interoperability', name:'Interoperabilidade', def:'Facilidade de integração com outros sistemas.', cat:'Estrutural'},
+  {id:'portability', name:'Portabilidade', def:'Facilidade de mover o sistema entre ambientes/plataformas diferentes.', cat:'Estrutural'},
+  {id:'supportability', name:'Suportabilidade', def:'Nível de esforço necessário para diagnosticar e resolver problemas em produção.', cat:'Estrutural'},
+  {id:'learnability', name:'Aprendizibilidade', def:'Facilidade com que novos usuários ou desenvolvedores aprendem o sistema.', cat:'Cross-cutting'},
+];
+
+const STORAGE_KEY = 'arch-characteristics-session-v1';
+
+let state = {
+  step: 1, // 1 = setup, 2 = voting, 3 = results
+  candidates: DEFAULT_CHARACTERISTICS.map(c => ({...c})),
+  selectedIds: [],
+  pointsPerStakeholder: 5,
+  maxPerCharacteristic: 3,
+  stakeholders: [], // {name, role, votes: {id: count}}
+  currentVotes: {},
+  currentName: '',
+  currentRole: '',
+  topN: 5,
+  loaded: false
+};
+
+async function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      const parsed = JSON.parse(raw);
+      state = {...state, ...parsed, loaded:true};
+    } else {
+      state.loaded = true;
+    }
+  }catch(e){
+    state.loaded = true;
+  }
+  render();
+}
+
+async function saveState(){
+  try{
+    const toSave = {...state};
+    delete toSave.loaded;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+  }catch(e){
+    console.error('Falha ao salvar sessão', e);
+  }
+}
+
+function resetAll(){
+  if(!confirm('Isso vai apagar a sessão atual (características, stakeholders e votos). Continuar?')) return;
+  state = {
+    step: 1,
+    candidates: DEFAULT_CHARACTERISTICS.map(c => ({...c})),
+    selectedIds: [],
+    pointsPerStakeholder: 5,
+    maxPerCharacteristic: 3,
+    stakeholders: [],
+    currentVotes: {},
+    currentName: '',
+    currentRole: '',
+    topN: 5,
+    loaded: true
+  };
+  saveState();
+  render();
+}
+
+function toggleCandidate(id){
+  const idx = state.selectedIds.indexOf(id);
+  if(idx >= 0) state.selectedIds.splice(idx,1);
+  else state.selectedIds.push(id);
+  saveState();
+  render();
+}
+
+function addCustomCharacteristic(){
+  const input = document.getElementById('custom-char-input');
+  const val = input.value.trim();
+  if(!val) return;
+  const id = 'custom-' + Date.now();
+  state.candidates.push({id, name:val, def:'Característica adicionada pela equipe.', cat:'Específica do projeto'});
+  state.selectedIds.push(id);
+  input.value = '';
+  saveState();
+  render();
+}
+
+function goToVoting(){
+  if(state.selectedIds.length < 2){
+    alert('Selecione pelo menos 2 características candidatas antes de iniciar a votação.');
+    return;
+  }
+  state.step = 2;
+  state.currentVotes = {};
+  state.currentName = '';
+  state.currentRole = '';
+  saveState();
+  render();
+}
+
+function backToSetup(){
+  state.step = 1;
+  saveState();
+  render();
+}
+
+function currentBudgetUsed(){
+  return Object.values(state.currentVotes).reduce((a,b)=>a+b,0);
+}
+
+function changeVote(id, delta){
+  const cur = state.currentVotes[id] || 0;
+  const used = currentBudgetUsed();
+  const next = cur + delta;
+  if(next < 0) return;
+  if(next > state.maxPerCharacteristic) return;
+  if(delta > 0 && used >= state.pointsPerStakeholder) return;
+  state.currentVotes[id] = next;
+  if(state.currentVotes[id] === 0) delete state.currentVotes[id];
+  render();
+}
+
+function submitStakeholder(){
+  const nameInput = document.getElementById('stakeholder-name');
+  const roleInput = document.getElementById('stakeholder-role');
+  const name = nameInput.value.trim() || ('Stakeholder ' + (state.stakeholders.length+1));
+  const role = roleInput.value.trim();
+  const used = currentBudgetUsed();
+  if(used !== state.pointsPerStakeholder){
+    alert('Distribua exatamente ' + state.pointsPerStakeholder + ' pontos antes de confirmar (você usou ' + used + ').');
+    return;
+  }
+  state.stakeholders.push({name, role, votes:{...state.currentVotes}});
+  state.currentVotes = {};
+  saveState();
+  render();
+}
+
+function removeStakeholder(idx){
+  state.stakeholders.splice(idx,1);
+  saveState();
+  render();
+}
+
+function goToResults(){
+  if(state.stakeholders.length === 0){
+    alert('Registre ao menos um stakeholder antes de ver os resultados.');
+    return;
+  }
+  state.step = 3;
+  saveState();
+  render();
+}
+
+function computeTotals(){
+  const totals = {};
+  state.selectedIds.forEach(id => totals[id] = 0);
+  state.stakeholders.forEach(s => {
+    Object.entries(s.votes).forEach(([id, v]) => {
+      totals[id] = (totals[id]||0) + v;
+    });
+  });
+  return totals;
+}
+
+function exportResults(){
+  const totals = computeTotals();
+  const ranked = state.selectedIds
+    .map(id => ({id, name: findChar(id).name, total: totals[id]||0}))
+    .sort((a,b) => b.total - a.total);
+  const lines = [];
+  lines.push('SESSÃO DE CARACTERÍSTICAS ARQUITETURAIS');
+  lines.push('Pontos por stakeholder: ' + state.pointsPerStakeholder);
+  lines.push('Stakeholders (' + state.stakeholders.length + '):');
+  state.stakeholders.forEach(s => lines.push('  - ' + s.name + (s.role ? ' (' + s.role + ')' : '')));
+  lines.push('');
+  lines.push('RANKING:');
+  ranked.forEach((r,i) => lines.push((i+1) + '. ' + r.name + ' — ' + r.total + ' pontos' + (i < state.topN ? '  [CANDIDATA A CARACTERÍSTICA DIRECIONADORA]' : '')));
+  const blob = new Blob([lines.join('\n')], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'caracteristicas-arquiteturais-resultado.txt';
+  a.click();
+}
+
+function findChar(id){
+  return state.candidates.find(c => c.id === id) || {name:id, def:''};
+}
+
+function render(){
+  const app = document.getElementById('app');
+  if(!state.loaded){
+    app.innerHTML = '<div style="color:#9fc1d1;font-family:monospace;">Carregando sessão...</div>';
+    return;
+  }
+
+  let html = '';
+  html += '<div class="titleblock">';
+  html += '<div><h1>Facilitador · Características Arquiteturais</h1><p>Sessão interativa para identificar as capacidades ("-ilities") críticas para o sistema, com base no exercício do arquiteto (Fundamentals of Software Architecture).</p></div>';
+  html += '<div class="tag">Cap. 5</div>';
+  html += '</div>';
+
+  html += '<div class="steps">';
+  html += '<div class="step ' + (state.step===1?'active':state.step>1?'done':'') + '">1 · Definir candidatas</div>';
+  html += '<div class="step ' + (state.step===2?'active':state.step>2?'done':'') + '">2 · Coletar votos dos stakeholders</div>';
+  html += '<div class="step ' + (state.step===3?'active':'') + '">3 · Resultado &amp; ranking</div>';
+  html += '</div>';
+
+  if(state.step === 1) html += renderSetup();
+  if(state.step === 2) html += renderVoting();
+  if(state.step === 3) html += renderResults();
+
+  app.innerHTML = html;
+  attachHandlers();
+}
+
+function renderSetup(){
+  let html = '<div class="panel">';
+  html += '<h2>1 · Selecione as características candidatas</h2>';
+  html += '<p class="hint">Marque as características que fazem sentido discutir com os stakeholders neste projeto. Comece amplo — na próxima etapa, os votos vão ajudar a reduzir a lista. Você também pode adicionar características específicas do projeto.</p>';
+  html += '<div class="char-grid">';
+  state.candidates.forEach(c => {
+    const sel = state.selectedIds.includes(c.id);
+    html += '<div class="char-item ' + (sel?'selected':'') + '" data-action="toggle" data-id="' + c.id + '">';
+    html += '<div class="name"><span class="checkbox"></span>' + c.name + '</div>';
+    html += '<div class="def">' + c.def + '</div>';
+    html += '</div>';
+  });
+  html += '</div>';
+  html += '<div class="add-custom">';
+  html += '<input type="text" id="custom-char-input" placeholder="Adicionar característica específica do projeto...">';
+  html += '<button data-action="add-custom">Adicionar</button>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="panel">';
+  html += '<h2>2 · Regras da votação</h2>';
+  html += '<div class="row">';
+  html += '<label>Pontos por stakeholder: </label>';
+  html += '<input type="number" id="points-input" min="1" max="20" value="' + state.pointsPerStakeholder + '" style="width:70px">';
+  html += '<label>Máximo de pontos por característica: </label>';
+  html += '<input type="number" id="max-per-input" min="1" max="20" value="' + state.maxPerCharacteristic + '" style="width:70px">';
+  html += '</div>';
+  html += '<p class="hint">Cada stakeholder distribui os pontos entre as características selecionadas, priorizando o que considera mais crítico. Isso evita que "tudo seja importante" e força uma escolha real.</p>';
+  html += '</div>';
+
+  html += '<div class="footer-row">';
+  html += '<button class="secondary" data-action="reset">Reiniciar sessão</button>';
+  html += '<button data-action="go-voting">Iniciar coleta de votos →</button>';
+  html += '</div>';
+  return html;
+}
+
+function renderVoting(){
+  const used = currentBudgetUsed();
+  const remaining = state.pointsPerStakeholder - used;
+  let html = '';
+
+  html += '<div class="panel">';
+  html += '<h2>Registrar voto de um stakeholder</h2>';
+  html += '<div class="row">';
+  html += '<input type="text" id="stakeholder-name" placeholder="Nome" value="' + (state.currentName||'') + '">';
+  html += '<input type="text" id="stakeholder-role" placeholder="Papel (ex: Product Owner, DBA...)" value="' + (state.currentRole||'') + '">';
+  html += '<div class="budget ' + (remaining===0?'zero':remaining<0?'over':'') + '">Pontos restantes: ' + remaining + ' / ' + state.pointsPerStakeholder + '</div>';
+  html += '</div>';
+  html += '<div class="vote-list">';
+  state.selectedIds.forEach(id => {
+    const c = findChar(id);
+    const v = state.currentVotes[id] || 0;
+    html += '<div class="vote-row">';
+    html += '<div class="name">' + c.name + '</div>';
+    html += '<div class="vote-controls">';
+    html += '<button class="vote-btn" data-action="vote-minus" data-id="' + id + '">–</button>';
+    html += '<div class="vote-count">' + v + '</div>';
+    html += '<button class="vote-btn" data-action="vote-plus" data-id="' + id + '">+</button>';
+    html += '</div>';
+    html += '<div></div><div></div>';
+    html += '</div>';
+  });
+  html += '</div>';
+  html += '<div class="footer-row">';
+  html += '<button class="secondary" data-action="back-setup">← Voltar</button>';
+  html += '<button data-action="submit-stakeholder" ' + (used!==state.pointsPerStakeholder?'disabled':'') + '>Confirmar voto</button>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="panel">';
+  html += '<h2>Stakeholders já registrados (' + state.stakeholders.length + ')</h2>';
+  if(state.stakeholders.length === 0){
+    html += '<p class="empty">Nenhum stakeholder registrado ainda.</p>';
+  } else {
+    state.stakeholders.forEach((s, idx) => {
+      html += '<div class="stakeholder-card">';
+      html += '<div class="who">' + s.name + (s.role ? ' <span class="role">— ' + s.role + '</span>' : '') + '</div>';
+      html += '<button class="danger" data-action="remove-stakeholder" data-idx="' + idx + '">Remover</button>';
+      html += '</div>';
+    });
+  }
+  html += '<div class="footer-row">';
+  html += '<div></div>';
+  html += '<button data-action="go-results">Ver resultado →</button>';
+  html += '</div>';
+  html += '</div>';
+
+  return html;
+}
+
+function renderResults(){
+  const totals = computeTotals();
+  const ranked = state.selectedIds
+    .map(id => ({id, ...findChar(id), total: totals[id]||0}))
+    .sort((a,b) => b.total - a.total);
+  const maxTotal = Math.max(1, ...ranked.map(r => r.total));
+
+  let html = '';
+  html += '<div class="panel">';
+  html += '<h2>Ranking das características arquiteturais</h2>';
+  html += '<p class="hint">' + state.stakeholders.length + ' stakeholder(s) participaram, com ' + state.pointsPerStakeholder + ' pontos cada. Lembre-se: o objetivo não é a arquitetura perfeita — é manter a lista final o mais curta possível, focando nas características que realmente direcionam decisões estruturais.</p>';
+  html += '<div class="row"><label>Destacar as top </label><input type="number" id="topn-input" min="1" max="' + ranked.length + '" value="' + state.topN + '" style="width:60px"><label>como características direcionadoras</label></div>';
+  html += '<div class="divider"></div>';
+  ranked.forEach((r, i) => {
+    const pct = Math.round((r.total / maxTotal) * 100);
+    html += '<div class="bar-row">';
+    html += '<div class="bar-label">' + r.name + (i < state.topN ? '<span class="top-badge">TOP</span>' : '') + '</div>';
+    html += '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div>';
+    html += '<div class="bar-value">' + r.total + '</div>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  html += '<div class="panel">';
+  html += '<h2>Detalhe por stakeholder</h2>';
+  state.stakeholders.forEach(s => {
+    const parts = Object.entries(s.votes)
+      .sort((a,b)=>b[1]-a[1])
+      .map(([id,v]) => findChar(id).name + ' (' + v + ')')
+      .join(', ');
+    html += '<p class="hint"><strong style="color:var(--ink)">' + s.name + (s.role?' — '+s.role:'') + ':</strong> ' + (parts || 'sem votos') + '</p>';
+  });
+  html += '</div>';
+
+  html += '<div class="footer-row">';
+  html += '<button class="secondary" data-action="back-voting">← Voltar para votação</button>';
+  html += '<div style="display:flex;gap:10px;">';
+  html += '<button class="secondary" data-action="export">Exportar resultado (.txt)</button>';
+  html += '<button class="danger" data-action="reset">Nova sessão</button>';
+  html += '</div>';
+  html += '</div>';
+
+  return html;
+}
+
+function attachHandlers(){
+  document.querySelectorAll('[data-action]').forEach(el => {
+    const action = el.getAttribute('data-action');
+    el.onclick = (e) => {
+      switch(action){
+        case 'toggle': toggleCandidate(el.getAttribute('data-id')); break;
+        case 'add-custom': addCustomCharacteristic(); break;
+        case 'go-voting':
+          syncSetupInputs();
+          goToVoting();
+          break;
+        case 'back-setup': backToSetup(); break;
+        case 'vote-minus': changeVote(el.getAttribute('data-id'), -1); break;
+        case 'vote-plus': changeVote(el.getAttribute('data-id'), 1); break;
+        case 'submit-stakeholder':
+          syncVotingInputs();
+          submitStakeholder();
+          break;
+        case 'remove-stakeholder': removeStakeholder(parseInt(el.getAttribute('data-idx'))); break;
+        case 'go-results': goToResults(); break;
+        case 'back-voting': state.step = 2; saveState(); render(); break;
+        case 'export': exportResults(); break;
+        case 'reset': resetAll(); break;
+      }
+    };
+  });
+
+  const topnInput = document.getElementById('topn-input');
+  if(topnInput){
+    topnInput.onchange = () => {
+      state.topN = parseInt(topnInput.value) || 5;
+      saveState();
+      render();
+    };
+  }
+
+  const nameInput = document.getElementById('stakeholder-name');
+  const roleInput = document.getElementById('stakeholder-role');
+  if(nameInput) nameInput.oninput = () => { state.currentName = nameInput.value; };
+  if(roleInput) roleInput.oninput = () => { state.currentRole = roleInput.value; };
+
+  const customInput = document.getElementById('custom-char-input');
+  if(customInput){
+    customInput.onkeydown = (e) => { if(e.key === 'Enter') addCustomCharacteristic(); };
+  }
+}
+
+function syncSetupInputs(){
+  const p = document.getElementById('points-input');
+  const m = document.getElementById('max-per-input');
+  if(p) state.pointsPerStakeholder = parseInt(p.value) || 5;
+  if(m) state.maxPerCharacteristic = parseInt(m.value) || 3;
+  saveState();
+}
+
+function syncVotingInputs(){
+  const nameInput = document.getElementById('stakeholder-name');
+  const roleInput = document.getElementById('stakeholder-role');
+  if(nameInput) state.currentName = nameInput.value;
+  if(roleInput) state.currentRole = roleInput.value;
+}
+
+loadState();
+
+})();
+</script>
+
+</body>
+</html>
