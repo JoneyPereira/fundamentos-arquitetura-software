@@ -1,0 +1,22 @@
+# Capítulo 7 - Escopo das Características Arquiteturais
+
+## Resumo
+
+O sétimo capítulo parte de uma constatação de fundo: o pensamento dos arquitetos de software precisa acompanhar a evolução do próprio ecossistema tecnológico, e um dos lugares onde isso fica mais evidente é justamente na forma como se define o **escopo** das características arquiteturais. Depois de os capítulos 4, 5 e 6 tratarem de identificar e medir essas características, o capítulo 7 chama atenção para um erro comum e potencialmente grave: tratar o sistema como um bloco único e assumir que um mesmo conjunto de características arquiteturais vale para toda a arquitetura, independentemente da parte considerada. Segundo os autores, essa suposição é uma falha capaz de comprometer todo o processo de design, já que diferentes partes de um sistema costumam ter necessidades distintas de disponibilidade, escalabilidade, segurança e assim por diante.
+
+Para superar essa limitação, o capítulo introduz o conceito central de **quantum arquitetural**, definido como a menor unidade do sistema que consegue ser executada de forma independente. Um quantum não se restringe ao código: ele carrega consigo seus próprios dados e as demais dependências necessárias para operar sozinho. Essa ideia oferece uma nova lente para pensar o escopo — em vez de perguntar "quais características o sistema precisa?", o arquiteto passa a perguntar "quais características cada quantum precisa?", reconhecendo que diferentes quanta podem (e frequentemente devem) ter conjuntos diferentes de características arquiteturais.
+
+O capítulo conecta essa discussão à **modelagem por domínio (DDD — Domain-Driven Design)**, apresentada como uma técnica que permite aos arquitetos decompor domínios de problema complexos de maneira organizada. Ao identificar os limites do quantum dentro do domínio do problema, o arquiteto ganha um critério mais claro para escolher entre um estilo arquitetural monolítico e um estilo distribuído — a fronteira do quantum ajuda a revelar onde a independência de execução é realmente necessária e onde ela não se justifica.
+
+Outro princípio importante do capítulo relaciona escopo e acoplamento: quanto mais restrito for o escopo considerado, maior o grau de acoplamento que pode ser tolerado entre os elementos; à medida que o escopo se amplia, o acoplamento entre as partes deve se tornar progressivamente mais fraco. Esse raciocínio dialoga diretamente com as regras de conascência apresentadas no Capítulo 3 (regra de grau e regra de localidade), reforçando que a intensidade aceitável de dependência entre componentes não é uma constante — ela varia de acordo com a extensão do escopo analisado.
+
+Por fim, o capítulo chama atenção para as particularidades do escopo quando a arquitetura envolve **recursos baseados em nuvem**. Os autores recomendam considerar pelo menos dois cenários distintos nesse contexto: o uso da nuvem para hospedar contêineres da aplicação e o uso de recursos e serviços do próprio provedor de nuvem como componentes integrantes do sistema. Essa distinção importa porque cada cenário implica diferentes fronteiras de quantum, diferentes dependências externas e, consequentemente, diferentes implicações para as características arquiteturais que precisam ser garantidas.
+
+## Principais aprendizados
+
+- Assumir um único conjunto de características arquiteturais para todo o sistema é uma falha recorrente e potencialmente grave — diferentes partes do sistema costumam ter necessidades distintas.
+- Quantum arquitetural é a menor parte do sistema capaz de ser executada de forma independente, incluindo seus próprios dados e dependências.
+- O conceito de quantum arquitetural fornece uma nova forma de definir o escopo das características, permitindo tratá-las por parte do sistema, e não apenas de forma global.
+- O DDD ajuda a decompor domínios de problema complexos e, ao definir os limites do quantum, orienta a escolha entre arquiteturas monolíticas e distribuídas.
+- Existe uma relação inversa entre escopo e acoplamento: escopos mais restritos toleram acoplamentos mais fortes; escopos mais amplos exigem acoplamentos mais fracos — em linha com as regras de conascência do Capítulo 3.
+- Ao usar recursos em nuvem, é preciso considerar cenários distintos (hospedagem de contêineres vs. uso de serviços do provedor como componentes do sistema), pois cada um afeta de forma diferente o escopo e as características arquiteturais envolvidas.

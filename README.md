@@ -219,3 +219,29 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 [Resumo do capítulo](doc/capitulo6/resumo.md)
 
 [Calcula a Complexidade Ciclomática (CC)](doc/capitulo6/cyclomatic_complexity.py)
+
+---
+
+### Capitulo 7 - Escopo das características arquiteturais
+
+> "pensamento dos arquitetos de software deve evoluir com o ecossistema."
+
+> "isso é mais evidente na definição do escopo das características arquiteturais."
+
+> "uma falha fatal: assumir um único conjunto de características arquiteturais para todo o sistema."
+
+> "quantum arquitetural é a 'menor parte do sistema que é executada independetemente'."
+
+> "um serviço pode ser executado independentemente dentro da arquitetura, incluindo seus dados e outras dependências."
+
+> "DDD é uma tecnica de modelagem que permite que os arquitetos decompanham domínios de problema complexos de maneira organizada."
+
+> "Acoplamentos mais altos são permitidos para escopos mais restritos; quanto mais amplo o escopo, mais fraco deve ser o acoplamento."
+
+> "conceito de quantum arquitetural oferece uma nova forma de pensar sobre o escopo."
+
+> "Determinar os limites do quantum do domínio do problema ajuda na escolha de um estilo arquitetural: uma arquitetura monolítica ou uma aquitetura distribuída."
+
+> "considerar pelo menos dois cenários ao usar recursos baseados em nuvem: para hospedar contêiners e recursos do provedor de nuvem como compomentes do sistema."
+
+[Resumo do capítulo](doc/capitulo7/resumo.md)
