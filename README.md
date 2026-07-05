@@ -6,6 +6,8 @@ Este repositório também reúne skills práticas para agentes de IA, derivadas 
 conceitos estudados em cada capítulo. Cada skill fica em `skills/<nome>/SKILL.md`
 e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 
+---
+
 ## Capítulo 1: Introdução
 
 > "Todas as arquiteturas são produtos de seu contexto - lembre-se disso ao ler este livro"
@@ -35,6 +37,8 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 > "Espera-se que o arquiteto entenda o clima político da empresa e seja capaz de lidar com a política."
 
 [Resumo do capítulo](doc/capitulo1/resumo.md)
+
+---
 
 ## Parte 1: Fundamentos
 
@@ -73,6 +77,8 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 > "Tarefa difíceis que um arquiteto enfrenta é como equilibrar a codificação prática com a arquitetura de software."
 
 [Resumo do capítulo](doc/capitulo2/resumo.md)
+
+---
 
 ### Capitulo 3 - Modularidade
 
@@ -118,6 +124,8 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 > Analisa a coesão de classes de um repositório real calculando LCOM96 por classe,
 > gerando ranking de baixa coesão e apontando indícios de violação de SRP.
 
+---
+
 ### Capitulo 4 - Definição das características arquiteturais
 
 > "Design estrutual: análise de características arquiteturais, design de componentes lógicos."
@@ -148,6 +156,8 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 
 [Resumo do capítulo](doc/capitulo4/resumo.md)
 
+---
+
 ### Capitulo 5 - Identificando características arquiteturais
 
 > "identificar as características arquiteturais ('capacidades') corretas para determinado problema ou aplicação exige não só o conhecimento do problema do domínio, mas também a colaboração das partes interessadas para determinar o que é realmente importante do ponto de vista do domínio."
@@ -177,3 +187,35 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 [Resumo do capítulo](doc/capitulo5/resumo.md)
 
 [Facilitador de características arquiteturais (ferramenta interativa)](doc/capitulo5/facilitador-caracteristicas.html)
+
+---
+
+### Capitulo 6 - Medindo e controlando as características arquiteturais
+
+> "É benéfico para os arquitetos saber como medir e controlar as características arquiteturais."
+
+> "Equipes de alto nível baseiam suas definições em análises estatísticas."
+
+> "Um aspecto mensurável de código é a complexidade, definida pela métrica Complexidade Ciclomática."
+
+> "o processo de desenvolvimento de software, pode influenciar a estrutura da arquitetura."
+
+> "governança é uma responsabilidade importante do papel do arquiteto."
+
+> "seu escopo abrange qualquer aspecto do processo de desenvolvimento de software que os arquitetos queiram influenciar."
+
+> "função de aptidão: uma função objeto usada para avaliar se o resultado chegou próximo de atingir seu objetivo."
+
+> "função de aptidão arquitetural: qualquer mecanismo que forneça uma avaliação objetiva da integridade de alguma característica araquitetural ou combinação de características arquiteturais."
+
+> "Os arquitetos devem assegurar que os desenvolvedores entendam a finalidade de uma função de aptidão antes de impô-la a eles."
+
+>"problema que pode ocorrer com qualquer métrica ou medição: a possibilidade de os desenvolvedores tentarem manipular o sistema."
+
+> "A engenharia do caos oferece uma nova e interessante perspectiva para a arquitetura: não é uma questão de se algo acabará sobrebdo danos, e sim quando."
+
+> "funções de aptidão - não são um mecanismo de governanção pesado, e sim uma forma de os arquitetos expressarem e cerificarem automaticamente principios arquiteturais importantes."
+
+[Resumo do capítulo](doc/capitulo6/resumo.md)
+
+[Calcula a Complexidade Ciclomática (CC)](doc/capitulo6/cyclomatic_complexity.py)
