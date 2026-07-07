@@ -245,3 +245,85 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 > "considerar pelo menos dois cenários ao usar recursos baseados em nuvem: para hospedar contêiners e recursos do provedor de nuvem como compomentes do sistema."
 
 [Resumo do capítulo](doc/capitulo7/resumo.md)
+
+---
+
+### Capitulo 8 - Pensamento baseado em componentes
+
+> "componentes lógicos - os blocos de construção de um sistema."
+
+> "Pensar com base em componentes é ver a estrutura de um sistema como um conjunto de componentes lógicos, todos interagindo para executar certas funções do negócio."
+
+> "as principais funções que um sistema executa representam os compomentes deste sistema."
+
+> "arquitetura lógica é composta dos compomentes lógicos (blocos de construção) de um sistema e de como interagem uns com outros."
+
+> "arquitetura física, inclui artefatos físicos como serviços, interfaces de usuário, bancos de dados e assim por diante."
+
+> "numa arquitetura lógica, o mais importante é o que o sistema faz, como essa funcionalidade é demarcada e como as partes funcionais do sistema interagem."
+
+> "arquitetura lógica envolve identificar e reestruturar componentes lógicos continuamente"
+
+> "O desafio é deterinar quais devem ser os compomentes iniciais básicos."
+
+> "interar pelos compomentes lógicos à medida que aprendemos mais sobre o sistema."
+
+> "Uma abordagem comum para identificar os compoementes iniciais básicos de uma arquitetura lógica é a do Fluxo de Trabalho (Workflow)"
+
+> "concentre-se nos fluxos de trabalho principais."
+
+> "Outra maneira de os arquitetos identificarem os compomentes iniciais básicos é com as abordagem do Ator/Ação."
+
+> "identifica as principais ações que um usuário pode realizar no sistema."
+
+> "tentador para um arquiteto começar a identificar compomentes se concentrando nas entidades envolvidas no sistema e derivando compomentes dessas entidades."
+
+> "os nomes do compomentes lógicos são ambíguos e não descrevem o papel do compomente."
+
+> "antipadrão Armadilha da Entidade."
+
+> "os componentes se tornam depósitos para funcionalidades relacionadas ao domínio."
+
+> "ele passa a ser semelhantes às classes utilitárias 'faz-tudo' que todo desenvolvedor já escreveu pelo menos uma vez na carreira."
+
+> "os compomentes passam a ter baixa granularidade, fazem coisas demais e perdem a finalidade."
+
+> "Se um arquiteto estiver construindo um sistema, operações CRUD, o sistema não precisará de uma arquitetura, e sim de um framework, ferramentea ou ambiente nocode/low-code baseado em CRUD."
+
+> "próxima etapa da criação de uma arquitetura lógica é atribuir histórias de usuário ou requisitos aos compoemntes lógicos."
+
+> "próxima etapa do refinamento dos compomentes lógicos é analisar os papéis e responsabilidades de cada compomente."
+
+> "coesão: como e quanto as operações de um compomente estão inter-relacionadas."
+
+> "etapa de análise final é considerar as característics arquiteturais que o sistema exigirá."
+
+> "uma visão puramente funcional do design de compomentes poderia levar um arquiteto a atribuir um único compomente para manipular a interação do usuário, analisar os compomentes em termos de características arquiteturais leva a uma subdivisão."
+
+> "determinação de quais características arquiteturais são as mais importamtes para o sistema."
+
+> "arquitetos devem iterar continuamente nos seus designs de compomentes em colaboração com os desenvolvedores."
+
+> "reestruturar os compomentes frequentemente ao longo do ciclo de vida de um sistema ou produto."
+
+> "mais acoplados estiverem os componentes de um sistema, mas difícil será mantê-lo e testá-lo"
+
+> "O acoplamento estático ocorre quando os compomentes se comunicam uns com os outros de forma sincrona."
+
+> "Acoplamento aferente é o grau em que os outros compomentes dependem de um compomente-alvo."
+
+> "Acoplamento eferente é o grau em que um compomente-alvo depende de outros compomentes."
+
+> "Acoplamento temporal descreve dependências não estáticas, geralmente baseadas em tempo ou transações."
+
+> "buscar o fraco acoplamento no design do sistema."
+
+> "técnica para a criação de sistemas fracamente acoplados se chama Lei de Demeter."
+
+> "um componente ou serviço deve ter conhecimento limitado de outros compomentes ou serviços."
+
+> "A ideia existente por trás da Lei de Demeter é a limitação do conhecimento que cada compomente tem sobre o restante do sistema."
+
+> "Aplicar a Lei de Demeter não reduz necessamente o nível de acoplamento em todo o sistema; em vez disso, geralmente ela redistribui esse acoplamento para diferentes partes do sistema."
+
+[Resumo do capítulo](doc/capitulo8/resumo.md)
