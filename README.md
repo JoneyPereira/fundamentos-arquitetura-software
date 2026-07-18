@@ -327,3 +327,92 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 > "Aplicar a Lei de Demeter não reduz necessamente o nível de acoplamento em todo o sistema; em vez disso, geralmente ela redistribui esse acoplamento para diferentes partes do sistema."
 
 [Resumo do capítulo](doc/capitulo8/resumo.md)
+
+---
+
+[Perguntas para discussão](doc/recapitulacao-parte1-perguntas-respostas.md)
+
+---
+
+## Parte 2: Estilos de arquitetura
+
+> "Compreender os estilos arquiteturais demanda muito tempo e esforço"
+
+> "conhecer os diversos estilos e os trade-offs relacionados com cada um para tomar decisões eficazes."
+
+---
+
+### Capitulo 9 - Fundamentos
+
+> "Estilo de uma arquitetura descreve: topologia de componentes, arquitetura física, implantação, estilo de comunicação e topologia de dados."
+
+> "Nomear um estilo forne uma maneira concisa de descrever esse complexo conjunto de fatores."
+
+> "Grande Bola de Lama é um emaranhado de código espaguete mal estruturado, disperso, desleixado e com vários correções."
+
+> "Grande Bola de Lama pode descrever uma aplicação simples de scripting sem estrutura interna real, que tem seus manipuladores de eventos conectados diretamente a chamdas de banco de dados."
+
+> "estilo fundamental na arquitetura separa a funcionalidade técnica entre front-end e back-end: isso é chamado de arquitetura de duas camadas ou cliente/servidor."
+
+> "sempre haverá camadas para separar diferentes partes das arquiteturas, dependendo das necessidades da aplicação e das capacidades da plataforma."
+
+> "arquitetura de três camadas: servidor de banco de dados de nível industrial, servidor de aplicação e um front-end."
+
+> "Nunca foi fácil entender as implicações no longo prazo das decisões de design."
+
+> "prefira designs simples"
+
+> "Um tipo específico de organização de compomentes tem um impacto enorme: particionamento de alto nível."
+
+> "monólito em camadas: organizar a arquitetura com base em suas capacidades técnicas."
+
+> "monólito modular: composto de um única unidade de implantação, um banco de dados e particionada com base em domínios."
+
+> "apresentação, regras de negócio, serviços, persistência e assim por diante: padrão de projeto Model-View-Controller."
+
+> "particionamento por domínio: inspirado no livro Domain-Driven Design, de Eric Evans, domínios ou fluxos de trabalho, independentes e desacoplados, arquitetura de microsserviços é baseado nessa filosofia."
+
+> "Lei de Conway: Empresas que projetam sistemas... ficam restristas a produzir designs que são cópias de suas estruturas de comunicação."
+
+> "arquiteturas particionadas por domínio separam os componentes de alto nível por fluxo de trabalho e/ou domínio."
+
+> "arquiteturas particionadas tecnicamente separam os componentes de alto nível com base em capacidades tecnicas."
+
+> "monolítico (unidade de implantação única para todo o código) e distribuído (várias unidades de implantação conectadas por meio de protocolos de acesso remoto)."
+
+> "falácias da computação distribuída"
+
+> "A rede é confiável: para todos os estilos arquiteturais distribuídos, porque dependem da rede para a comunicação de, para e entre os serviços. Por isso, existem mecanismo como tempos limites e circuit breakers entre os serviços."
+
+> "A latência é zero: Em qualquer arquitetura distribuída, a laténcia não é zero: você sabe qual é a latência média de ida e volta para uma chamada RESTful em seu ambiente de produção? Conhecer a latência do percentil 95 a 99 é ainda mais crucial."
+
+> "A largura de banda é infinita: um sistema é dividido em unidades de implantação menores (serviços) em uma arquitetura distribuída, como a de microsserviços, a comunicação para e entre esses serviços usa uma largura de banda significativa. Acoplamento de carimbo (stamp coupling) pode ser resolvido das seguintes formas: criação de endpoints privados de API RESTful, uso de seletores de campo em contratos, uso do GraphQl, uso de contratos baseados em valor para contratos orientados ao consumidor, uso de endpoints de mensagem internos. Garantir que os serviçoes ou sistemas transmitam apenas os dados necessários."
+
+> "A topologia nunca muda: manter comunicação constante com os administradores de operações e rede sobre o que está mudando e quando, para fazer ajustes e evitar essas supresas."
+
+> "Existe apenas um administrador: presumir que precisam coloborar e se comunicar com apenas um administrador. Complexidade da arquitetura distribuída e o volume de coordenação que deve existir para que tudo funcione corretamente."
+
+> "O custo do transporte é zero: Arquiteturas distribuídas custam significativamente mais do que as arquiteturas monolíticas, principalmente pelo aumento das necessidades de hardware, servidores, gateways, ferewalls, novas sub-redes, proxies e assim por diante. Analisem sua topologia atual de servidores e rede em relação à capacidade, à largura de banda, à latência e a zonas de segurança, para evitar serem surpreendidos por essa falácia."
+
+> "A rede é homogênea: pacotes de rede são perdidos, afeta a confiabilidade da rede e as suposições e asserções sobre latência e largura de banda."
+
+> "É fácil criar versões: Embora o versionamento seja uma abordagem sensata para evolução da comunicação entre serviços, apresenta uma série de trade-offs que os arquitetos devem prever."
+
+> "As atualizações compensatórias sempre funcionam: arquitetos que estiverem projentando fluxos de trabalho transacionais em microsserviços devem acomodar o fluxo de trabalho de compensação 'normal', mas também considerar como se recuperar se tanto a atualização quanto a atualização compensatória (ou parte dela) falharem."
+
+> "Team Topologies"
+
+> "equipes alinhadas ao fluxo se concentram estritamente em uma única linha de trabalho, como um produto, serviço ou um conjunto específico de recursos."
+
+> "equipes de facilitação preenche uma lacuna em alguma capacidade, oferencendo um espaço para pesquisas necessárias, apendizado e outras tarefas que sejam importantes, mas não urgentes."
+
+> "equipes de subsistemas complicados compreendem totalmente um subsitema ou domínio complexo e podem ajudar uma equipe alinhada ao fluxo a palicá-lo. Seu objetivo é reduzir a carga cognitiva das outras equipes."
+
+> "equipe de plataforma fornece serviços internos e blocos de construção para soluções, apoiam as outras equipes, tentando remover atritos desnecessários enquanto fornecem a governança requerida em relação a preocupações como qualidade e segurança."
+
+
+[Resumo do capítulo](doc/capitulo9/resumo.md)
+
+---
+
+[Perguntas para discussão](doc/recapitulacao-parte2-perguntas-respostas.md)
