@@ -415,4 +415,51 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 
 ---
 
+### Capitulo 10 - Estilo arquitetural em camadas
+
+> "estilo arquitetural em camadas, N-camadas"
+
+> "padrão de muitas aplicações legadas por sua simplicidade, familiaridade e baixo custo."
+
+> "Cada camada tem um papel e responsabilidade específicos e forma uma abstração baseada no trabalho que precisa ser feito para o atendimento a uma requisição do negócio."
+
+> "permite que os desenvolvedores usem sua expertise técnica para se concentrar nos aspectos técnicos do domínio."
+
+> "abordagem de DDD não se encaixa particularmente bem no estilo de arquitetura em camadas."
+
+> "camadas de isolamentos: alterações feitas em uma camada da arquitetura não impactam nem afetam os componentes de outras camadas, desde que os contratos entre essas camadas permaneçam inalterados."
+
+> "o conceito de camadas abertas e fechadas ajuda a definir a relação entre as camadas da arquitetura e os fluxos de requisição."
+
+> "Architecture Sinkhole: quando as requisições são passadas de camada para camada, sem que nenhuma lógica de negócio seja executada."
+
+> "abordagem que resolve o antipadrão Architecture Sinkhole é tornar todas as camadas da arquitetura abertas - não se esquecendo, é claro, de que o trade-off é o aumento da dificuldade em gerenciar alterações."
+
+> "arquiteturas em camadas formam um sistema monolítico com um único banco de dados monolítico."
+
+> "particionamento técnico inerente a essa arquitetura é uma boa opção para implantações separadas por meio da nuvem."
+
+> "a latência da comunicação entre servidores locais e a nuvem pode criar problemas."
+
+> "arquiteturas em camadas não suportam tolerância a falhas por suas implantações monolíticas e pela falta e modularidade arquitetural."
+
+> "bibliotecas de funções de aptidão suportam muito bem o estilo arquitetural em camadas."
+
+> "o estilo arquitetural em camadas é independente das topologias de equipe e funciona com qualquer configuração de equipe"
+
+> "problema geral dos monólitos: à medida que crescem, tornam-se cada vez mais difíceis de manejar."
+
+> "arquitetos podem obter alta responsividade em uma arquitetura em camadas com um design cuidadoso e aumentá-lo ainda mais por meio de técnicas como cache e multithreading."
+
+> "estilo arquitetural em camadas é uma boa escolha para aplicações ou sites pequenos e simples."
+
+> "mantenha a reutilização de código em um nível mínimo e as hierarquias de objetos (a profundidade da árvore de herança) consideravelmente rasas para ter um bom nível de modularidade."
+
+> "aplicações e sistemas grandes podem se sair melhor utilizando outros estilos arquiteturais mais modulares."
+
+
+[Resumo do capítulo](doc/capitulo10/resumo.md)
+
+---
+
 [Perguntas para discussão](doc/recapitulacao-parte2-perguntas-respostas.md)
