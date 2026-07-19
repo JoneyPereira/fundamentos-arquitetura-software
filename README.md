@@ -462,4 +462,58 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 
 ---
 
+### Capitulo 11 - Estilo arquitetural de monólito modular
+
+> "estilo arquitetural de monólito modular é uma arquitetura monolítica."
+
+> "é considerado uma arquitetura particionada por domínio, uma única unidade de implantação com funcionalidade agrupada por área de domínio."
+
+> "arquitetura mais simples é uma estrutura monolítica, em que todos os módulos e componentes lógicos correspondentes ficam contidos no mesmo codebase, delineados pelo namespace ou estrutura de diretórios em que estão."
+
+> "opção mais simples para o monólito modular: todo o codigo-fonte do sistema está localizado em um único lugar, portanto é mantido, testado e implantado mais facilmente."
+
+> "necessária uma governança rigorosa."
+
+> "estrutura modular, os módulos são representados como artefatos autônomos, sendo, então, combinados em uma única unidade durante a implantação."
+
+> "opção que tende a produzir limites mais claros entre os módulos e uma melhor separação geral de preocupações."
+
+> "essa opção estrutural perde a eficácia quando módulos dependentes uns dos outros precisam se comunicar."
+
+> "problema da abordagem monolítica é ser muito fácil os desenvolvedores instanciarem qualquer classe contida em outro módulo."
+
+> "comunicação excessiva entre módulos com uso da abordagem de estrutura modular resulta no antipadrão DLL Hell ou JAR Hell."
+
+> "abordagem do mediador desacopla módulos usando um componente mediador para formar uma camada de abstração entre módulos."
+
+> "Essa abordagem não remove todo o acoplamento nem dependências, mas simplifica a arquitetura e mantém os módulos independentes uns dos outros."
+
+> "costuma depender de uma topologia de banco de dados monolítica."
+
+> "se os módulos forem independentes uns dos outros e executarem funções específicas, também poderão ter os próprios bancos de dados contendo dados contextuais especifícos."
+
+> "sua natureza monolítica as torna menos propensas a tirar proveito do provisionamento sob demanda que os ambientes de nuvem oferecem."
+
+> "mesmo assim sistemas menores implementados nesse estilo arquitetural podem usar muitos serviços de nuvem, como armazenamento de arquivos, banco de dados e troca de mensagens."
+
+> "principal risco do estilo arquitetural de monólito modular é que pode ficar grande demais para ser mantido, testado e implantado apropriadamente."
+
+> "monólito não estruturado: uma arquitetura monolítica com código tão interdependente que não pode ser desemaranhado."
+
+> "artefato do estilo de monólito modular é o módulo, que retrata um domínio ou subdomínio específico e geralmente é representado pela estrutura de diretórios ou namespace."
+
+> "funciona mellhor quando as equipes também estão alinhados por área de domínio."
+
+> "implantações monolíticas da arquitetura de monólito modular não suportam tolerância a falhas, disponibilidade geral é afetada pelo alto MTTR."
+
+> "simplicidade, baixo custo, o estilo arquitetural de monólito modular é uma boa escolha quando há restrições de orçamento e tempo."
+
+> "o monólito modular é uma arquitetura particionada por domínios, é adequado a equipes que praticam o DDD."
+
+> "razão para a não utilização desse estilo arquitetural é quando os sistemas ou produtos exigem altos níveis de certas características operacionais, como escalabilidade, elasticidade, disponibilidade, tolerância a falhas, responsividade e desempenho."
+
+[Resumo do capítulo](doc/capitulo11/resumo.md)
+
+---
+
 [Perguntas para discussão](doc/recapitulacao-parte2-perguntas-respostas.md)
