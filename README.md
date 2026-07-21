@@ -516,4 +516,60 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 
 ---
 
+### Capitulo 12 - Estilo arquitetural de pipeline
+
+> "estilo dundamental na arquitetura de software é a arquitetura de pipeline ou arquitetura de pipes e filtros"
+
+> "desenvolvedores conhece essa arquitetura como o princípio subjacente às linguagens de shell de terminal Unix"
+
+> "Os filtros contêm a funcionalidade do sistema e executam uma função de negócio, os pipes transferem dados para o próximo filtro (ou filtros) da cadeia."
+
+> "arquitetura de pipeline é uma única unidade de implantação, com funcionalidade contida em filtros conectados por pipes unidirecionais."
+
+> "é possível implantar cada filtro (ou um conjunto de filtros) como serviço, criando uma arquitetura distribuída com chamadas remotas síncronas ou assíncronas para cada serviço."
+
+> "produtor: Ponto de partida de um processo, os filtros produtores são apenas de saída."
+
+> "Transformador: filtros que aceitam entradas, opcionalmente fazem uma transformação em parte dos dados ou em todos eles e, em seguida, encaminham os dados para o pipe de saída."
+
+> "Testador: filtros testadores aceitam entrada, testam-na de acordo com um ou mais critérios e opcionalmente produzem uma saída baseada no teste."
+
+> "Consumidor: Ponto de término do fluxo do pipeline, os filtros consumidores às vezes persistem o resultado final do processo do pipeline em um banco de dados ou exibem os resultados finais em uma tela UI."
+
+> "os pipes forman o canal de comunicação entre os filtros."
+
+> "A topologia do banco de dados pode variar significativamente nesse estilo arquitetural, indo de um único banco de dados a um banco de dados por filtro."
+
+> "O estilo arquitetural de pipeline é adequado a implantações baseadas em nuvem devido ao seu alto nível de modularidade e tipos de filtros separados."
+
+> "podem ser implantados como funções serverless, como funções conteinerizadas ou como um único serviço contendo todos os quatros compomentes de filtro em uma implantação monolítica."
+
+> "riscos mais comuns é sobrecarregar os filtros com execesso de responsabilidade."
+
+> "risco comum desse estilo arquitetural é a introdução de comunicação bidirecional entre os filtros."
+
+> "Quando um erro ocorre dentro de um pipeline, é difícil determinar como sair corretamente do pipeline e se recuperar uma vez que este tiver começado."
+
+> "área de risco é o gerenciamento dos contratos entre filtros"
+
+> "arquitetos usam o papel e a responsabilidade de cada filtro para a governança das arquiteturas de pipeline."
+
+> "o estilo arquitetural de pipeline é independente das topologias de equipe e funciona com qualquer configuração de equipe."
+
+> "O estilo arquitetural de pipeline é uma arquitetura particionada tecnicamente porque sua lógica de aplicação é separada em tipos de filtros."
+
+> "qualquer filtro pode ser modificado ou substituído sem afetar os outros filtros."
+
+> "podemos melhorar essa arquitetura transformando em uma arquitetura distribuída com comunicação assíncrona, em que cada filtro seja uma unidade de implantação separada e os pipes sejam chamadas remotas."
+
+> "A arquitetura de pipeline é adequada a sistemas de qualquer complexidade com etapas de processamento distintas, ordenadas, determinísticas e unidirecionais."
+
+> "A arquitetura orientada a eventos é mais adequada a situações que envolvem fluxos de trabalho não determinísticos."
+
+> "O estilo arquitetural de pipeline aparece em várias aplicações, principalmente em tarefas que facilitam o processamento simples e unidirecinal."
+
+[Resumo do capítulo](doc/capitulo12/resumo.md)
+
+---
+
 [Perguntas para discussão](doc/recapitulacao-parte2-perguntas-respostas.md)
