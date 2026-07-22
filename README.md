@@ -572,4 +572,60 @@ e pode ser usada diretamente em agentes como Claude Code, Cursor, etc.
 
 ---
 
+### Capitulo 13 - Estilo arquitetural de microkernel
+
+> "estilo arquitetural de microkernel (arquitetura de plug-in) é uma opção natural para aplicações baseadas em produtos"
+
+> "também é muito utilizado em aplicações de negócios personalizadas não baseadas em produto, em domínios de problema que exigem personalização."
+
+> "arquitetura monolítica relativamente simples, composta de dois componentes: um sistema central (core system) e plug-ins."
+
+> "sistema central é definido formalmente como a funcionalidade mínima necessária para a execução do sistema."
+
+> "componentes de plug-in são componentes autônomos e independentes que contêm processamento especializado, recursos adicionais e código personalizado para aprimorar ou estender o sistema central."
+
+> "Nem todos os sistemas que suportam plug-ins são microkernels, mas todos os microkernels suportam plug-ins."
+
+> "O sistema central precisa saber quais módulos de plug-in estão disponíveis e como os acessar. Uma forma comum ed implementar isso é por meio de um registro de plug-ins."
+
+> "contratos entre os compomentes de plug-in e o sistema central são padrão em um domínio de compomentes de plug-in e incluem o comportamento, os dados de entrada e os dados de sáida retornados pelo componente de plug-in."
+
+> "equipes implementam arquiteturas de microkernel como arquiteturas monolíticas, usando um único banco de dados (normalmente relacional)"
+
+> "arquiteturas de microkernel são monolíticas, a nuvem representa algumas opções de baixa granularidade."
+
+> "primeira opção é implantar a aplicação inteira na nuvem, usando os recursos da própria nuvem ou contêineres."
+
+> "segunda é inserir apenas os dados na nuvem e implementar o microkernel como um sistema local."
+
+> "terceira opção segrega o sistema central como local e insere os plug-ins na nuvem."
+
+> "O sistema central de uma arquitetura de microkernel deve ser o mais estável possível após o desenvolvimento inicial."
+
+> "microkernels funcionam melhor quando os plug-ins se comunicam apenas com o sistema central, e não uns com os outros."
+
+> "governança em uma arquitetura de microkernel gira em torno da verificação de se os arquitetos estão seguindo corretamente sua filosofia."
+
+> "Verificação de volatilidade do sistema central - são funções de aptidão com o objetivo de verificar a rotatividade no controle de versão, em vez de ser uma verificação de código especifica."
+
+> "Taxa de alteração no sistema central."
+
+> "Testes de contrato (principalmente se alguns plug-ins suportarem versões diferentes dos outros plug-ins devido a uma evolução gradual.)"
+
+> "A divisão óbvia para as equipes nessa arquitetura é entre o sistema central e os plug-ins, refletindo sua topologia."
+
+> "no estilo arquitetural de microkernel a simplicidade e o custo total são os pontos fortes e a escalabilidade, a tolerância a falhas e a elasticidade são os pontos fracos."
+
+> "O microkernel é exclusivo por ser o único estilo arquitetural que pode ser particionado tanto por domínio quanto tecnicamente."
+
+> "funcionalidade pode ser isolada em componentes de plug-in independentes."
+
+> "permite que as equipes respondam às mudanças com muito mais rapidez."
+
+> "O estilo arquitetural de microkernel é muito comum; uma vez que o conhecemos, começamos a vê-lo em todos os lugares."
+
+[Resumo do capítulo](doc/capitulo13/resumo.md)
+
+---
+
 [Perguntas para discussão](doc/recapitulacao-parte2-perguntas-respostas.md)
